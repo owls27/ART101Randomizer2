@@ -21,9 +21,7 @@ let therion = [{
 
 let randomIndex;
 let animating = false;
-
-
-
+let therion = [];
 
 function setup() {
   createCanvas(800, 800);
@@ -34,9 +32,16 @@ function setup() {
 
 }
 
+function preload(){
+
+  for (let i = 0; i <= 5; i++){
+    therion[i] = loadImage("assets/troll_" + )
+  }
+}
+
 function draw() {
   if (animating == true) {
-    square(random(width), random(height), random(50, 200));
+
   }
 }
 
