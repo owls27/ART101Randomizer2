@@ -1,85 +1,75 @@
-//random animals
-let therion = [{
-  name: "owl",
-  color: "purple"
+//random fishes
+let fishs = [{
+  name: "a mermaid",
+  result: "The mermaid winked at you, but you thought of your wife at home, so you had to send the mermaid back to the sea",
 }, {
-  name: "koala",
-  color: "yellow"
+  name: "a shark",
+  result: "Seeing the shark hit the bait, you let go of your hand in fright, so you lost your fishing rod and need to pay 100 to get a new one",
 }, {
-  name: "turtle",
-  color: "green"
+  name: "a tuna",
+  result: "You caught a tuna and sold it at the market",
 }, {
-  name: "fox",
-  color: "orange"
+  name: "a salmon",
+  result: "You caught a salmon and sold it at the market",
 }, {
-  name: "panda",
-  color: "red"
+  name: "a bass",
+  result: "You caught a bass and sold it at the market",
 }, {
-  name: "fish",
-  color: "blue"
+  name: "a codfish",
+  result: "You caught a codfish and sold it at the market",
+}, {
+  name: "a grouper",
+  result: "You caught a grouper and sold it at the market",
+}, {
+  name: "nothing",
+  result: "You didn't catch anything, but the sea view is pretty good",
 }];
 
 let randomIndex;
 let animating = false;
-let therions = [];
-let imageCounter = 0;
-let button;
+let fish = [];
+let img;
 
-function preload() {
-
-  for (let i = 0; i <= 5; i++) {
-    therions[i] = loadImage(`assets/therion_${i}.JPG`)
+function preload(){
+  for (let i = 0; i <= 7; i++){
+    fishs[i] = loadImage("assets/fish_" + i + ".PNG")
   }
+
 }
 
 function setup() {
   createCanvas(800, 800);
-  background(200);
-  textSize(36);
-  textFont('Courier new')
-  textAlign(CENTER);
-  textStyle(BOLD);
-  fill(255);
-  imageMode(CENTER);
-  frameRate(8);
+  background(220);
+  textSize(32);
 
-  text("click to randomize", width / 2, height / 2);
-  button = createButton("click to randomize");
-  button.mousePressed(buttonPressed);
+  text("You are a fisherman who makes a living by fishing, but recently your wife thinks that you don't make enough money. Today your wife asks you to make 500 dollars.", 50, 50);
+
 }
 
 function draw() {
   if (animating == true) {
-    clear();
-    image(therions[imageCounter], width / 2, height / 2);
-
-    if (imageCounter < therions.length - 1) {
-      imageCounter++;
-      console.log(imageCounter);
-    } else {
-      imageCounter = 0;
-    }
+    fill(42, 193, 239);
+    ellipse(random(width), random(height), random(50, 200), random(50, 200));
   }
 }
 
-function randomizer() {
+function randomizer(){
   animating = false;
-  if (therion[0]) {
-    // background(random(200, 255));
-    clear();
-    randomIndex = int(random(therion.length));
-    image(random(therions), width / 2, height / 2);
-    text(`${therion[randomIndex].name}'s color is ${therion[randomIndex].color}`, width/2, height - 100);
-    therion.splice(randomIndex, 1);
-  } else {
+    if (fishs[0]) {
+      background(200, 255);
+      randomIndex = int(random(therion.length));
+      translate(400,500);
+      fill(0);
+      text(`${fishs[randomIndex].name}'s color is ${fishs[randomIndex].color}`, 50, 50);
+      fish.splice(randomIndex, 1);
+  } else{
     background(random(200, 255));
     text("nothing left!", 50, 50);
   }
 }
 
-function buttonPressed() {
+function mousePressed() {
   animating = true;
   setTimeout(randomizer, 2000);
-
 
 }
