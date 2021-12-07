@@ -27,12 +27,13 @@ let fishs = [{
 
 let randomIndex;
 let animating = false;
-let fish = [];
+let pics = [];
 let img;
+let imageCounter = 0;
 
-function preload(){
-  for (let i = 0; i <= 7; i++){
-    fishs[i] = loadImage("assets/fish_" + i + ".PNG")
+function preload() {
+  for (let i = 0; i <= 7; i++) {
+    pics[i] = loadImage(`assets/pic_${i}.JPG`)
   }
 
 }
@@ -40,29 +41,44 @@ function preload(){
 function setup() {
   createCanvas(800, 800);
   background(220);
-  textSize(32);
+  textSize(36);
+  textFont('Courier new');
+  textAlign(CENTER);
+  textStyle(BOLD);
+  imageMode(CENTER);
+  frameRate(8);
 
   text("You are a fisherman who makes a living by fishing, but recently your wife thinks that you don't make enough money. Today your wife asks you to make 500 dollars.", 50, 50);
 
 }
 
 function draw() {
+
   if (animating == true) {
+    clear();
     fill(42, 193, 239);
     ellipse(random(width), random(height), random(50, 200), random(50, 200));
+    image(pics[imageCounter], width / 2, height / 2);
+    if (imageCounter < pics.length) {
+      imageCounter++;
+    } else {
+      imageCounter = 0;
+    }
   }
 }
 
-function randomizer(){
+function randomizer() {
   animating = false;
-    if (fishs[0]) {
-      background(200, 255);
-      randomIndex = int(random(therion.length));
-      translate(400,500);
-      fill(0);
-      text(`${fishs[randomIndex].name}'s color is ${fishs[randomIndex].color}`, 50, 50);
-      fish.splice(randomIndex, 1);
-  } else{
+  if (fishs[0]) {
+    clear();
+    //background(200, 255);
+    randomIndex = int(random(fishs.length));
+    //translate(400, 500);
+    fill(0);
+    image(random(pics), width / 2, height / 2);
+    text(`You ${fishs[randomIndex].name}, ${fishs[randomIndex].result}`, width / 2, height - 100);
+    fishs.splice(randomIndex, 1);
+  } else {
     background(random(200, 255));
     text("nothing left!", 50, 50);
   }
