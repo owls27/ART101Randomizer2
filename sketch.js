@@ -28,8 +28,9 @@ let fishs = [{
 let randomIndex;
 let animating = false;
 let pics = [];
-let img;
 let imageCounter = 0;
+let button;
+
 
 function preload() {
   for (let i = 0; i <= 7; i++) {
@@ -48,16 +49,16 @@ function setup() {
   imageMode(CENTER);
   frameRate(8);
 
-  text("You are a fisherman who makes a living by fishing, but recently your wife thinks that you don't make enough money. Today your wife asks you to make 500 dollars.", 50, 50);
+  text("You are a fisherman who makes a living by fishing, but recently your wife thinks that you don't make enough money. Today your wife asks you to make 500 dollars.", width / 2, height / 2);
 
+  button = createButton("click to randomize")
+  button.mousePressed(buttonPressed);
 }
 
 function draw() {
 
   if (animating == true) {
     clear();
-    fill(42, 193, 239);
-    ellipse(random(width), random(height), random(50, 200), random(50, 200));
     image(pics[imageCounter], width / 2, height / 2);
     if (imageCounter < pics.length) {
       imageCounter++;
@@ -79,12 +80,12 @@ function randomizer() {
     text(`You ${fishs[randomIndex].name}, ${fishs[randomIndex].result}`, width / 2, height - 100);
     fishs.splice(randomIndex, 1);
   } else {
-    background(random(200, 255));
+    //background(random(200, 255));
     text("nothing left!", 50, 50);
   }
 }
 
-function mousePressed() {
+function buttonPressed() {
   animating = true;
   setTimeout(randomizer, 2000);
 
