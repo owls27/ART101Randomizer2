@@ -40,16 +40,19 @@ function preload() {
 }
 
 function setup() {
-  createCanvas(800, 800);
+  createCanvas(900, 900);
   background(220);
-  textSize(36);
+  textSize(23);
   textFont('Courier new');
   textAlign(CENTER);
   textStyle(BOLD);
+  fill(0);
   imageMode(CENTER);
-  frameRate(8);
+  frameRate(12);
 
-  text("You are a fisherman who makes a living by fishing, but recently your wife thinks that you don't make enough money. Today your wife asks you to make 500 dollars.", width / 2, height / 2);
+  text("You are a fisherman who makes a living by fishing, ", width / 2, height / 4);
+  text("but recently your wife thinks that you don't make enough money.", width / 2, height / 3);
+  text("Today your wife asks you to make 500 dollars.", width / 2, height / 2);
 
   button = createButton("click to randomize")
   button.mousePressed(buttonPressed);
@@ -59,7 +62,7 @@ function draw() {
 
   if (animating == true) {
     clear();
-    image(pics[imageCounter], width / 2, height / 2);
+    image(pics[imageCounter], width / 4, height / 4);
     if (imageCounter < pics.length) {
       imageCounter++;
     } else {
@@ -71,16 +74,14 @@ function draw() {
 function randomizer() {
   animating = false;
   if (fishs[0]) {
-    clear();
     //background(200, 255);
+    clear();
     randomIndex = int(random(fishs.length));
-    //translate(400, 500);
-    fill(0);
     image(random(pics), width / 2, height / 2);
-    text(`You ${fishs[randomIndex].name}, ${fishs[randomIndex].result}`, width / 2, height - 100);
+    text(`It is a ${fishs[randomIndex].name}, ${fishs[randomIndex].result}`, width / 2, height - 100);
     fishs.splice(randomIndex, 1);
   } else {
-    //background(random(200, 255));
+    background(random(200, 255));
     text("nothing left!", 50, 50);
   }
 }
